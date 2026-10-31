@@ -41,7 +41,7 @@ class User(UserMixin, db.Model):
         self.is_admin = is_admin
 
     def set_password(self, password: str) -> None:
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password, method='pbkdf2:sha256')
 
     def check_password(self, password: str) -> bool:
         if not self.password_hash:

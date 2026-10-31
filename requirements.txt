@@ -12,4 +12,3 @@ numpy>=2.0
 pandas>=2.2
 scikit-learn>=1.4
 gunicorn>=22.0
-psycopg2-binary>=2.9.9

@@ -56,8 +56,9 @@ def _env_float(name, default):
 
 
 def _database_uri():
+    # Use SQLite by default (ignores any legacy PostgreSQL URLs).
     url = os.environ.get('DATABASE_URL')
-    if url:
+    if url and not url.startswith(('postgres://', 'postgresql://')):
         return url
     return 'sqlite:///' + os.path.join(INSTANCE_DIR, 'app.db')
 
@@ -100,7 +101,7 @@ class Config:
     PREDICT_RATE_LIMIT = os.environ.get('PREDICT_RATE_LIMIT', '30 per minute')
     LOGIN_RATE_LIMIT = os.environ.get('LOGIN_RATE_LIMIT', '10 per minute')
     REGISTER_RATE_LIMIT = os.environ.get('REGISTER_RATE_LIMIT', '5 per minute')
-    HEATMAP_RATE_LIMIT = os.environ.get('HEATMAP_RATE_LIMIT', '30 per minute')
+    HEATMAP_RATE_LIMIT = os.environ.get('HEATMAP_RATE_LIMIT', '60 per minute')
 
     # Machine learning artifacts
     ARTIFACTS_DIR = os.environ.get(

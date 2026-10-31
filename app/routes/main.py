@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import Any, cast
 from flask import (
     Blueprint, current_app, flash, jsonify, redirect, render_template, request, url_for,
@@ -133,7 +134,6 @@ def profile():
 
     top_region = None
     if total_count > 0:
-        from collections import Counter
         regions = [v.region for v in all_valuations if v.region]
         if regions:
             top_region = Counter(regions).most_common(1)[0][0]

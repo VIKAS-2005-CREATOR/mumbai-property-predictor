@@ -10,7 +10,7 @@ import logging
 import math
 import os
 from functools import lru_cache
-from typing import Any, cast
+from typing import Any
 
 import joblib  # pyright: ignore[reportMissingImports]
 import pandas as pd

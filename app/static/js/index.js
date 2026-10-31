@@ -280,29 +280,7 @@
         button.addEventListener('click', () => {
             const details = panel.querySelector('details');
             if (details) details.open = true;
-
-            if (typeof html2pdf === 'undefined') {
-                window.print();
-                return;
-            }
-
-            button.style.display = 'none';
-            panel.classList.add('pdf-export-mode');
-
-            const opt = {
-                margin: 0.4,
-                filename: 'PropVal_Valuation_Report.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(panel).save()
-                .catch(() => window.print())
-                .finally(() => {
-                    panel.classList.remove('pdf-export-mode');
-                    button.style.display = 'block';
-                });
+            window.print();
         });
     }
 
